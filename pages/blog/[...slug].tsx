@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { MDXLayoutRenderer } from '@/components/MDXComponents'
-import { sortedBlogPost, coreContent } from '@/lib/utils/contentlayer'
+import PageTitle from '../../components/PageTitle'
+import { MDXLayoutRenderer } from '../../components/MDXComponents'
+import { sortedBlogPost, coreContent } from '../../lib/utils/contentlayer'
 import { InferGetStaticPropsType } from 'next'
-import { allBlogs, allAuthors } from 'contentlayer/generated'
+import { allBlogs, allAuthors } from '../../.contentlayer/generated'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
