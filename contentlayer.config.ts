@@ -1,9 +1,9 @@
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer/source-files'
 
-//import readingTime from 'reading-time'
-//import path from 'path'
+import readingTime from 'reading-time'
+import path from 'path'
 // Remark packages
-/*import remarkGfm from 'remark-gfm'
+import remarkGfm from 'remark-gfm'
 import remarkFootnotes from 'remark-footnotes'
 import remarkMath from 'remark-math'
 import remarkExtractFrontmatter from './lib/remark-extract-frontmatter'
@@ -16,7 +16,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
 import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
-import rehypePresetMinify from 'rehype-preset-minify'*/
+import rehypePresetMinify from 'rehype-preset-minify'
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
