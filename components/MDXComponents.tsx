@@ -2,13 +2,13 @@
 import React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { ComponentMap } from 'mdx-bundler/client'
-import { coreContent } from '@/lib/utils/contentlayer'
+import { coreContent } from '../lib/utils/contentlayer'
 import Image from './Image'
 import CustomLink from './Link'
 import TOCInline from './TOCInline'
 import Pre from './Pre'
 import { BlogNewsletterForm } from './NewsletterForm'
-import type { Blog, Authors } from 'contentlayer/generated'
+import type { Blog, Authors } from '../.contentlayer/generated'
 
 interface MDXLayout {
   layout: string
