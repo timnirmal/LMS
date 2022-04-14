@@ -56,24 +56,5 @@ export const Blog = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'data',
   contentDirInclude: ['blog'],
-  documentTypes: [Blog],
-  mdx: {
-    cwd: process.cwd(),
-    remarkPlugins: [
-      remarkExtractFrontmatter,
-      remarkGfm,
-      remarkCodeTitles,
-      [remarkFootnotes, { inlineNotes: true }],
-      remarkMath,
-      remarkImgToJsx,
-    ],
-    rehypePlugins: [
-      rehypeSlug,
-      rehypeAutolinkHeadings,
-      rehypeKatex,
-      [rehypeCitation, { path: path.join(root, 'data') }],
-      [rehypePrismPlus, { ignoreMissing: true }],
-      rehypePresetMinify,
-    ],
-  },
+  documentTypes: [Blog]
 })
