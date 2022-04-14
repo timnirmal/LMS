@@ -1,115 +1,104 @@
-/*import {useState, useEffect} from 'react'
-import {NextPage} from 'next'
-import {NextAppPageProps} from '../types/app'
-import Layout from '../components/Layout'
-import {FaLock, FaGithub} from 'react-icons/fa'
-import {useAuth} from '../lib/auth'
-import {useFormFields} from '../lib/utils'
-import Navbar from '../components/Navbar'
-import Example from './test'
-import Image from 'next/image'
-import Carousel from "../components/Carousel/Carousel";
-import Card from "../components/Card/card";
-import CardData from "../components/Card/CardData";
-import CardLikeComment from "../components/Card/CardLikeComment";
-import FourItemCard from "../components/Card/FourItemCard";
+import Link from '../components/Link'
+import { PageSEO } from '../components/SEO'
+import Tag from '../components/Tag'
+import siteMetadata from '../data/siteMetadata'
+import formatDate from '../lib/utils/formatDate'
+import { sortedBlogPost, allCoreContent } from '../lib/utils/contentlayer'
+import { InferGetStaticPropsType } from 'next'
+import NewsletterForm from '../components/NewsletterForm'
+import { allBlogs } from '../.contentlayer/generated'
 
-import Product from "../pages/product/[id]";
+const MAX_DISPLAY = 5
 
+export const getStaticProps = async () => {
+    // TODO: move computation to get only the essential frontmatter to contentlayer.config
+    const sortedPosts = sortedBlogPost(allBlogs)
+    const posts = allCoreContent(sortedPosts)
 
-// define the shape of the SignUp form's fields
-type SignUpFieldProps = {
-    email: string,
-    password: string
+    return { props: { posts } }
 }
 
-// the value we'd like to initialize the SignUp form with
-const FORM_VALUES: SignUpFieldProps = {
-    email: '',
-    password: ''
-}
-
-const myLoader = ({src, width, quality}) => {
-    return `https://localhost:3000/public/${src}?w=${width}&q=${quality || 75}`
-}
-
-const IndexPage: NextPage<NextAppPageProps> = ({}) => {
+export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
-        <div>
-            <Layout useBackdrop={false} usePadding={false}>
-                HI
-                <Card
-                    title="Men-White-Watch"
-                    description="Card description"
-                    image="components/Slidebar/Screenshot(1082).png"
-                />
-
-                <div className="card w-96 bg-base-100 shadow-xl">
-                    <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes"/></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">
-                            Shoes!
-                            <div className="badge badge-secondary">NEW</div>
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <div className="badge badge-outline">Fashion</div>
-                            <div className="badge badge-outline">Products</div>
-                        </div>
-                    </div>
+        <>
+            <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
+            <div className="divide-y divide-gray-200 dark:divide-gray-700">
+                <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+                    <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+                        Latest
+                    </h1>
+                    <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+                        {siteMetadata.description}
+                    </p>
                 </div>
-            </Layout>
-        </div>
+                <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+                    {!posts.length && 'No posts found.'}
+                    {posts.slice(0, MAX_DISPLAY).map((post) => {
+                        const { slug, date, title, summary, tags } = post
+                        return (
+                            <li key={slug} className="py-12">
+                                <article>
+                                    <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                                        <dl>
+                                            <dt className="sr-only">Published on</dt>
+                                            <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                                                <time dateTime={date}>{formatDate(date)}</time>
+                                            </dd>
+                                        </dl>
+                                        <div className="space-y-5 xl:col-span-3">
+                                            <div className="space-y-6">
+                                                <div>
+                                                    <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                                                        <Link
+                                                            href={`/blog/${slug}`}
+                                                            className="text-gray-900 dark:text-gray-100"
+                                                        >
+                                                            {title}
+                                                        </Link>
+                                                    </h2>
+                                                    <div className="flex flex-wrap">
+                                                        {tags.map((tag) => (
+                                                            <Tag key={tag} text={tag} />
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                                                    {summary}
+                                                </div>
+                                            </div>
+                                            <div className="text-base font-medium leading-6">
+                                                <Link
+                                                    href={`/blog/${slug}`}
+                                                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                                                    aria-label={`Read "${title}"`}
+                                                >
+                                                    Read more &rarr;
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+            {posts.length > MAX_DISPLAY && (
+                <div className="flex justify-end text-base font-medium leading-6">
+                    <Link
+                        href="/blog"
+                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        aria-label="all posts"
+                    >
+                        All Posts &rarr;
+                    </Link>
+                </div>
+            )}
+            {siteMetadata.newsletter.provider !== '' && (
+                <div className="flex items-center justify-center pt-4">
+                    <NewsletterForm />
+                </div>
+            )}
+        </>
     )
 }
-
-export default IndexPage
-
-IndexPage.defaultProps = {
-    meta: {
-        title: 'Ecom'
-    }
-}*/
-
-import Link from "next/link";
-import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts, Post } from "../.contentlayer/generated";
-
-export async function getStaticProps() {
-    const posts: Post[] = allPosts.sort((a, b) => {
-        return compareDesc(new Date(a.date), new Date(b.date));
-    });
-    return { props: { posts } };
-}
-
-function PostCard(post: Post) {
-    return (
-        <div className="mb-8">
-            <h2 className="text-xl">
-                <Link href={post.url}>
-                    <a className="text-blue-700 hover:text-blue-900">{post.title}</a>
-                </Link>
-            </h2>
-            <time dateTime={post.date} className="block text-xs text-gray-600 mb-2">
-                {format(parseISO(post.date), "LLLL d, yyyy")}
-            </time>
-            <div
-                className="text-sm"
-                dangerouslySetInnerHTML={{ __html: post.body.html }}
-            />
-        </div>
-    );
-}
-
-export default function Home({ posts }: { posts: Post[] }) {
-    return (
-        <div className="max-w-xl mx-auto py-8">
-            <h1 className="text-3xl font-bold mb-8 text-center">Next.js Example</h1>
-
-            {posts.map((post, idx) => (
-                <PostCard key={idx} {...post} />
-            ))}
-        </div>
-    );
-}
-

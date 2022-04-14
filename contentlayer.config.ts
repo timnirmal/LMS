@@ -18,6 +18,9 @@ import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
 
+
+const root = process.cwd()
+
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: '**/*.mdx',
@@ -46,5 +49,24 @@ export const Blog = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'data',
   contentDirInclude: ['blog'],
-  documentTypes: [Blog]
+  documentTypes: [Blog],
+  mdx: {
+    cwd: process.cwd(),
+    remarkPlugins: [
+      remarkExtractFrontmatter,
+      remarkGfm,
+      remarkCodeTitles,
+      [remarkFootnotes, { inlineNotes: true }],
+      remarkMath,
+      remarkImgToJsx,
+    ],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeAutolinkHeadings,
+      rehypeKatex,
+      [rehypeCitation, { path: path.join(root, 'data') }],
+      [rehypePrismPlus, { ignoreMissing: true }],
+      rehypePresetMinify,
+    ],
+  },
 })
