@@ -34,6 +34,7 @@ interface Props {
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: Props) {
   const { slug, date, title, tags } = content
+  authorDetails = [`tim`, 'jim', 'joe'];
 
   return (
     <SectionContainer>
