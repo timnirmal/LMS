@@ -27,6 +27,10 @@ const computedFields: ComputedFields = {
     resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
   },
   toc: { type: 'string', resolve: (doc) => extractTocHeadings(doc.body.raw) },
+  url: {
+    type: 'string',
+    resolve: (doc) => `/posts/${doc._raw.flattenedPath}`,
+  },
 }
 
 export const Blog = defineDocumentType(() => ({
@@ -34,7 +38,7 @@ export const Blog = defineDocumentType(() => ({
   filePathPattern: '**/*.mdx',
   contentType: 'mdx',
   fields: {
-    title: { type: 'string', required: true },
+    title: { type: 'string', required: true, description: 'The title of the post' },
     date: { type: 'date', required: true },
     tags: { type: 'list', of: { type: 'string' } },
     lastmod: { type: 'date' },
@@ -49,28 +53,10 @@ export const Blog = defineDocumentType(() => ({
   computedFields,
 }))
 
-export const Authors = defineDocumentType(() => ({
-  name: 'Authors',
-  filePathPattern: 'authors/**/*.mdx',
-  contentType: 'mdx',
-  fields: {
-    name: { type: 'string', required: true },
-    avatar: { type: 'string' },
-    occupation: { type: 'string' },
-    company: { type: 'string' },
-    email: { type: 'string' },
-    twitter: { type: 'string' },
-    linkedin: { type: 'string' },
-    github: { type: 'string' },
-    layout: { type: 'string' },
-  },
-  computedFields,
-}))
-
 export default makeSource({
   contentDirPath: 'data',
-  contentDirInclude: ['blog', 'authors'],
-  documentTypes: [Blog, Authors],
+  contentDirInclude: ['blog'],
+  documentTypes: [Blog],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
