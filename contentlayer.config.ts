@@ -21,6 +21,7 @@ import rehypePresetMinify from 'rehype-preset-minify'
 
 const root = process.cwd()
 
+
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: '**/*.mdx',
@@ -43,6 +44,12 @@ export const Blog = defineDocumentType(() => ({
       type: 'string',
       resolve: (doc) => `/blog/${doc._raw.flattenedPath}`,
     },
+    readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
+    slug: {
+      type: 'string',
+      resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
+    },
+    toc: { type: 'string', resolve: (doc) => extractTocHeadings(doc.body.raw) },
   },
 }))
 

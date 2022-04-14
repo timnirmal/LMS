@@ -2,7 +2,7 @@ import PageTitle from '../../components/PageTitle'
 import { MDXLayoutRenderer } from '../../components/MDXComponents'
 import { sortedBlogPost, coreContent } from '../../lib/utils/contentlayer'
 import { InferGetStaticPropsType } from 'next'
-import { allBlogs, allAuthors } from '../../.contentlayer/generated'
+import { allBlogs } from '../../.contentlayer/generated'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
@@ -24,15 +24,10 @@ export const getStaticProps = async ({ params }) => {
   const next = nextContent ? coreContent(nextContent) : null
   const post = sortedPosts.find((p) => p.slug === slug)
   const authorList = post.authors || ['default']
-  const authorDetails = authorList.map((author) => {
-    const authorResults = allAuthors.find((p) => p.slug === author)
-    return coreContent(authorResults)
-  })
 
   return {
     props: {
       post,
-      authorDetails,
       prev,
       next,
     },
