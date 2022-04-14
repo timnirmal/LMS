@@ -1,7 +1,7 @@
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer/source-files'
 
-import readingTime from 'reading-time'
-import path from 'path'
+//import readingTime from 'reading-time'
+//import path from 'path'
 // Remark packages
 /*import remarkGfm from 'remark-gfm'
 import remarkFootnotes from 'remark-footnotes'
@@ -18,21 +18,12 @@ import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'*/
 
-const root = process.cwd()
-
-const computedFields: ComputedFields = {
-  url: {
-    type: 'string',
-    resolve: (doc) => `/posts/${doc._raw.flattenedPath}`,
-  },
-}
-
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: '**/*.mdx',
   contentType: 'mdx',
   fields: {
-    title: { type: 'string', required: true, description: 'The title of the post' },
+    title: { type: 'string', required: true },
     date: { type: 'date', required: true },
     tags: { type: 'list', of: { type: 'string' } },
     lastmod: { type: 'date' },

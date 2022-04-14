@@ -73,7 +73,7 @@ IndexPage.defaultProps = {
 
 import Link from "next/link";
 import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts, Post } from "contentlayer/generated";
+import { allPosts, Post } from "../.contentlayer/generated";
 
 export async function getStaticProps() {
     const posts: Post[] = allPosts.sort((a, b) => {
