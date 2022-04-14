@@ -1,0 +1,29 @@
+{
+  "name": "Sparrow Hawk",
+  "avatar": "/static/images/sparrowhawk-avatar.jpg",
+  "occupation": "Wizard of Earthsea",
+  "company": "Earthsea",
+  "twitter": "https://twitter.com/sparrowhawk",
+  "linkedin": "https://www.linkedin.com/sparrowhawk",
+  "body": {
+    "raw": "\nAt birth, Ged was given the child-name Duny by his mother. He was born on the island of Gont, as a son of a bronzesmith. His mother died before he reached the age of one. As a small boy, Ged had overheard the village witch, his maternal aunt, using various words of power to call goats. Ged later used the words without an understanding of their meanings, to surprising effect.\n\nThe witch knew that using words of power effectively without understanding them required innate power, so she endeavored to teach him what little she knew. After learning more from her, he was able to call animals to him. Particularly, he was seen in the company of wild sparrowhawks so often that his \"use name\" became Sparrowhawk.\n",
+    "code": "var Component=(()=>{var w=Object.create;var o=Object.defineProperty;var c=Object.getOwnPropertyDescriptor;var d=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,l=Object.prototype.hasOwnProperty;var s=e=>o(e,\"__esModule\",{value:!0});var p=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),u=(e,t)=>{s(e);for(var r in t)o(e,r,{get:t[r],enumerable:!0})},f=(e,t,r)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let n of d(t))!l.call(e,n)&&n!==\"default\"&&o(e,n,{get:()=>t[n],enumerable:!(r=c(t,n))||r.enumerable});return e},g=e=>f(s(o(e!=null?w(m(e)):{},\"default\",e&&e.__esModule&&\"default\"in e?{get:()=>e.default,enumerable:!0}:{value:e,enumerable:!0})),e);var h=p((y,i)=>{i.exports=_jsx_runtime});var j={};u(j,{default:()=>x,frontmatter:()=>b});var a=g(h()),b={name:\"Sparrow Hawk\",avatar:\"/static/images/sparrowhawk-avatar.jpg\",occupation:\"Wizard of Earthsea\",company:\"Earthsea\",twitter:\"https://twitter.com/sparrowhawk\",linkedin:\"https://www.linkedin.com/sparrowhawk\"};function k(e={}){let{wrapper:t}=e.components||{};return t?(0,a.jsx)(t,Object.assign({},e,{children:(0,a.jsx)(r,{})})):r();function r(){let n=Object.assign({p:\"p\"},e.components);return(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(n.p,{children:\"At birth, Ged was given the child-name Duny by his mother. He was born on the island of Gont, as a son of a bronzesmith. His mother died before he reached the age of one. As a small boy, Ged had overheard the village witch, his maternal aunt, using various words of power to call goats. Ged later used the words without an understanding of their meanings, to surprising effect.\"}),(0,a.jsx)(n.p,{children:'The witch knew that using words of power effectively without understanding them required innate power, so she endeavored to teach him what little she knew. After learning more from her, he was able to call animals to him. Particularly, he was seen in the company of wild sparrowhawks so often that his \"use name\" became Sparrowhawk.'})]})}}var x=k;return j;})();\n;return Component;"
+  },
+  "_id": "authors/sparrowhawk.mdx",
+  "_raw": {
+    "sourceFilePath": "authors/sparrowhawk.mdx",
+    "sourceFileName": "sparrowhawk.mdx",
+    "sourceFileDir": "authors",
+    "contentType": "mdx",
+    "flattenedPath": "authors/sparrowhawk"
+  },
+  "type": "Authors",
+  "readingTime": {
+    "text": "1 min read",
+    "minutes": 0.63,
+    "time": 37800,
+    "words": 126
+  },
+  "slug": "sparrowhawk",
+  "toc": []
+}

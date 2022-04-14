@@ -497,6 +497,38 @@ export default function Example() {
 
                                 </div>
 
+                                <div className="border-t border-gray-200 py-6 px-4 space-y-6">
+                                    <div className="flow-root">
+                                        <a href="/blog" className="-m-2 p-2 block font-medium text-gray-900">
+                                            Blog
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="border-t border-gray-200 py-6 px-4 space-y-6">
+                                    <div className="flow-root">
+                                        <a href="/tags" className="-m-2 p-2 block font-medium text-gray-900">
+                                            Tags
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="border-t border-gray-200 py-6 px-4 space-y-6">
+                                    <div className="flow-root">
+                                        <a href="/projects" className="-m-2 p-2 block font-medium text-gray-900">
+                                            Projects
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="border-t border-gray-200 py-6 px-4 space-y-6">
+                                    <div className="flow-root">
+                                        <a href="/about" className="-m-2 p-2 block font-medium text-gray-900">
+                                            About
+                                        </a>
+                                    </div>
+                                </div>
+
                                 {/* Currency */}
                                 {/*<div className="hidden lg:ml-8 lg:flex">
                                     <a href="#" className="text-gray-700 hover:text-gray-800 flex items-center">
